@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Астрономия Әлемі</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Фон страницы */
+        body {
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Галерея суреттерін бірдей өлшемде көрсету */
+        #gallery img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Слайдер суреттерін бірдей өлшемде көрсету */
+        #carouselExample .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        /* Заголовок и шрифты */
+        h1, h2, h3 {
+            font-family: 'Arial', sans-serif;
+            color: #e0e0e0;
+        }
+
+        /* Боковое меню */
+        #miniMenu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1050;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #miniMenu.active {
+            transform: translateX(0);
+        }
+
+        #miniMenu ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        #miniMenu li {
+            margin-bottom: 15px;
+        }
+
+        #miniMenu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        #miniMenu li a:hover {
+            color: #00bcd4;
+        }
+
+        /* Кнопка открытия меню */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: 0.3s;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Хидер/Навигация -->
+    <header class="bg-dark text-white py-3">
+        <nav class="navbar navbar-expand-lg navbar-dark container">
+            <a class="navbar-brand" href="#">Астрономия</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Басты бет</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Астрономия</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#stars-planets">Жұлдыздар мен Ғаламшарлар</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Галерея</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Байланыс</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Батыр бөлім/Слайдер -->
+    <section id="home" class="mb-5">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://avatars.mds.yandex.net/i?id=019f08fa332a6f93f047392d425a2466_l-5288364-images-thumbs&n=13" class="d-block w-100" alt="Ғалам">
+                    <div class="carousel-caption">
+                        <h1>Ғарыш әлеміне саяхат</h1>
+                        <p>Ғаламның құпияларын ашыңыз</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=adf22176c97649ad2584c4424ab4aaeb42c820d1-9652646-images-thumbs&n=13" class="d-block w-100" alt="Жұлдыздар">
+                    <div class="carousel-caption">
+                        <h1>Жұлдыздардың әсемдігі</h1>
+                        <p>Миллиардтаған жылдар бойы жарқырап тұр</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=481e813f052b3be3b1da6f014551af7a44d5c6e9-5231735-images-thumbs&n=13" class="d-block w-100" alt="Ғаламшар">
+                    <div class="carousel-caption">
+                        <h1>Ғаламшарлардың құпиялары</h1>
+                        <p>Күн жүйесінің ғажайыптарын зерттеңіз</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Кнопка открытия меню -->
+    <button class="menu-btn" onclick="toggleMiniMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Боковое меню -->
+    <div id="miniMenu">
+        <h4>Меню</h4>
+        <ul>
+            <li><a href="#home">Басты бет</a></li>
+            <li><a href="#about">Астрономия</a></li>
+            <li><a href="#stars-planets">Жұлдыздар мен Ғаламшарлар</a></li>
+            <li><a href="#gallery">Галерея</a></li>
+            <li><a href="#contact">Байланыс</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleMiniMenu() {
+            const menu = document.getElementById('miniMenu');
+            const btn = document.querySelector('.menu-btn');
+            menu.classList.toggle('active');
+            btn.classList.toggle('active');
+        }
+    </script>
+
+    <!-- Секция с кнопками-ссылками на астрономические сайты -->
+    <section id="links" class="container my-5">
+        <h3>Астрономия: қызықты ресурстар</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="https://www.nasa.gov" class="btn btn-primary w-100" target="_blank">NASA</a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.esa.int" class="btn btn-secondary w-100" target="_blank">ESA (Еуропалық ғарыш агенттігі)</a>
+            </div>
+            <div class="col-md-4">
+                <a href="https://www.space.com" class="btn btn-success w-100" target="_blank">Space.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Астрономия туралы -->
+    <section id="about" class="container my-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="https://avatars.mds.yandex.net/i?id=10c55a32a66f3a4c1445848e879f159d36501835-10272338-images-thumbs&n=13" class="img-fluid rounded" alt="Астрономия">
+            </div>
+            <div class="col-lg-6">
+                <h2>Астрономия туралы</h2>
+                <p>Астрономия — бұл жұлдыздар, ғаламшарлар, кометалар және галактикалар сияқты аспан денелерін зерттейтін ғылым. Ол ғарыш құпияларын және біздің орнымызды зерттейді.</p>
+                <button class="btn btn-primary">Толығырақ</button>
+            </div>
+            
+ <!-- Accordion (Раскрывающееся меню) -->
+ <section id="accordion-section" class="container my-5">
+    <h3>Қызықты ақпарат</h3>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ғарыш туралы бірінші ақпарат
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Ғарыш туралы көптеген қызықты фактілер бар. Ғарыштың шексіздігі туралы көп нәрсе айтуға болады.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Ғаламшарлар туралы ақпарат
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Ғаламшарлар әр түрлі табиғи шарттарға ие және олардың өмір сүруге жарамдылығы туралы ғылымды зерттеу қызықты.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Жұлдыздар мен Ғаламшарлар -->
+<section id="stars-planets" class="container my-5">
+    <h3>Жұлдыздар мен Ғаламшарлар</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/i?id=fe17c28ebace985dc2577f961b3ab971_l-8185027-images-thumbs&n=13" class="card-img-top" alt="Жұлдыздар">
+                <div class="card-body">
+                    <h5 class="card-title">Жұлдыздар</h5>
+                    <p class="card-text">Жұлдыздар — бұл өте ыстық, жарқыраған газ шарлары. Олар ғаламның басты элементтері болып табылады.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/i?id=925242e1eabc731dcaa3b27dee452754b72c6c5e-4507760-images-thumbs&n=13" class="card-img-top" alt="Ғаламшарлар">
+                <div class="card-body">
+                    <h5 class="card-title">Ғаламшарлар</h5>
+                    <p class="card-text">Ғаламшарлар — бұл өз орбитасында күнді айналатын аспан денелері, оларда әр түрлі табиғи шарттар бар.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/i?id=83300f5d9a1370e08fe09af0d855131c36017abb-11413071-images-thumbs&n=13" class="card-img-top" alt="Кометалар">
+                <div class="card-body">
+                    <h5 class="card-title">Кометалар</h5>
+                    <p class="card-text">Кометалар — бұл мұзды және тасты компоненттерден тұратын ғарыш денелері. Олар күн жүйесіне жақындағанда жарқырайды.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Галерея -->
+<section id="gallery" class="container my-5">
+    <h2 class="text-center mb-4">Галерея</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=8f02c4171071d88c5715899e3b2c51b62eca456b3a1e5963-5878076-images-thumbs&n=13" class="img-fluid rounded" alt="Галактика">
+        </div>
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=ed616a088918afe050b173cfb2cac305c0c25c05-9674922-images-thumbs&n=13" class="img-fluid rounded" alt="Жұлдыздар">
+        </div>
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=38de07fd8ff3638d0a6914c71445e302581c8835-9100075-images-thumbs&n=13" class="img-fluid rounded" alt="Ғаламшар">
+        </div>
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=8394c4b8c0ffd3240db4bbdf49f09d18d2704971-8486953-images-thumbs&n=13" class="img-fluid rounded" alt="Комета">
+        </div>
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=75a62c362697dde817dde43d30cda2e40228fbc1-5331442-images-thumbs&n=13" class="img-fluid rounded" alt="Ай">
+        </div>
+        <div class="col-md-4">
+            <img src="https://avatars.mds.yandex.net/i?id=dc8a5e4c885ae60f321f4ac5f36d8d96b1ccf515-5243475-images-thumbs&n=13" class="img-fluid rounded" alt="Күн">
+        </div>
+    </div>
+</section>
+
+<!-- Байланыс -->
+<section id="contact" class="bg-dark text-white py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Бізбен байланыс</h2>
+        <form>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" placeholder="Атыңыз" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" placeholder="Электрондық поштаңыз" required>
+                </div>
+                <div class="col-12">
+                    <textarea class="form-control" rows="5" placeholder="Хабарламаңыз" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Жіберу</button>
+        </form>
+    </div>
+</section>
+
+<section id="additional-elements" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4"></h2>
+
+        <div class="mb-5">
+            <h3></h3>
+            <button class="btn btn-secondary" id="notificationButton">
+                Notifications <span class="badge bg-danger" id="notificationCount">4</span>
+            </button>
+            <span class="badge bg-success">Available</span>
+            <span class="badge bg-warning text-dark">Limited</span>
+        </div>
+        
+      
+        <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        You have <span id="modalNotificationCount">4</span> notifications.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+
+       
+        <div class="mb-5">
+            <h3>Toasts</h3>
+            <button class="btn btn-primary" id="showToast">Show Toast</button>
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Maldives Paradise</strong>
+                        <small>Just now</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                    </div>
+                    <div class="toast-body">
+                        Your journey to paradise begins here!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('showToast').addEventListener('click', () => {
+        const toast = new bootstrap.Toast(document.getElementById('liveToast'));
+        toast.show();
+    });
+</script>
+
+    <!-- Toast уведомление -->
+    <section id="toast-section" class="container my-5">
+        <button type="button" class="btn btn-info" id="showToastButton">Құттықтаймыз</button>
+    </section>
+
+    <!-- Модальное окно -->
+    <section id="modal-section" class="container my-5">
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Модаль ашу</button>
+
+        <!-- Модаль -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ғарыш әлемі туралы</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        добро пожаловать в астрономию
+                    </div> <!-- Accordion (Раскрывающееся меню) -->
+                    <section id="accordion-section" class="container my-5">
+                        <h3>Қызықты ақпарат</h3>
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Ғарыш туралы бірінші ақпарат
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Ғарыш туралы көптеген қызықты фактілер бар. Ғарыштың шексіздігі туралы көп нәрсе айтуға болады.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Ғаламшарлар туралы ақпарат
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Ғаламшарлар әр түрлі табиғи шарттарға ие және олардың өмір сүруге жарамдылығы туралы ғылымды зерттеу қызықты.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Жабу</button>
+                        <button type="button" class="btn btn-primary">Жалғастыру</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карты (Map) -->
+    <section id="map-section" class="container my-5">
+        <h3>Карталар мен зерттеулер</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ғаламшарлар картасы</h5>
+                <div id="map" style="height: 400px;">
+                    <!-- Карта интеграциясы -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224899.32128746318!2d69.1815877!3d41.3025719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aefac34b5cbf5b%3A0xb12275933c1c0573!2sTashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1594282168724!5m2!1sen!2s" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+
+<!-- Скрипты для Bootstrap и Toast уведомлений -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Код для отображения Toast уведомлений
+    const toastButton = document.getElementById('showToastButton');
+    toastButton.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastButton);
+        toast.show();
+    });
+
+    // Код для активации мини-меню
+    const menuButton = document.getElementById('menuButton');
+    const miniMenu = document.getElementById('miniMenu');
+
+    menuButton.addEventListener('click', () => {
+        menuButton.classList.toggle('active');
+        miniMenu.classList.toggle('active');
+    });
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Event listener for notification button
+    document.getElementById('notificationButton').addEventListener('click', function() {
+        // Open the modal
+        var notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+        notificationModal.show();
+
+        // Update notification count in the modal
+        var currentCount = parseInt(document.getElementById('notificationCount').innerText);
+        document.getElementById('modalNotificationCount').innerText = currentCount;
+    });
+</script>
+
+</script>
+</body>
+
+</html>
+
+  
